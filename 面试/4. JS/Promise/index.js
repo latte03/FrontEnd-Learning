@@ -14,15 +14,18 @@ const myPromise = require('./promise')
 const p = new myPromise((resolve, reject) => {
 	// do something
 	setTimeout(() => {
-		resolve('dd')
+		reject('dd')
 	}, 1000)
 })
 
 p.then(result => {
 	console.log('success', result)
-}).catch(err => {
-	console.log('err:', err)
 })
+	.catch(err => {
+		console.log('err:', err)
+		return 1
+	})
+	.then(cath => console.log('cath' + cath))
 
 myPromise.resolve('ee').then(res => {
 	console.log(res)
