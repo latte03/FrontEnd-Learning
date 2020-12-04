@@ -43,7 +43,6 @@
 
 - style 属性是必填的可以为空
 
-
 ### TextInput
 
 - 通过onChangeText 事件来获取输入框的值
@@ -67,6 +66,7 @@ const screenHeight = Math.round(Dimensions.get('window').height)
 样式中的Transform 接收一个数组，别设置css中的属性对象
 
 ```
+
 {
   transform: [
     {scale: 1},
