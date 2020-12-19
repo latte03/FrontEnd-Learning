@@ -15,8 +15,6 @@
 4. 代码结构调整，更便于`Tree shaking`，使得体积更小
 5. 使用`Typescript`替换`Flow`
 
-
-
 ## 为什么要新增`Composition API`，它能解决什么问题
 
 `Vue2.0`中，随着功能的增加，组件变得越来越复杂，越来越难维护，而难以维护的根本原因是`Vue`的`API`设计迫使开发者使用`watch`，computed，`methods`选项组织代码，而不是实际的业务逻辑。
@@ -24,16 +22,13 @@
 所以`Composition API`的出现，主要是也是为了解决`Option API`带来的问题，第一个是代码组织问题，`Compostion API`可以让开发者根据业务逻辑组织自己的代码，让代码具备更好的可读性和可扩展性，也就是说当下一个开发者接触这一段不是他自己写的代码时，他可以更好的利用代码的组织反推出实际的业务逻辑，或者根据业务逻辑更好的理解代码。
 第二个是实现代码的逻辑提取与复用，当然`mixin`也可以实现逻辑提取与复用，但是像前面所说的，多个`mixin`作用在同一个组件时，很难看出property是来源于哪个`mixin`，来源不清楚，另外，多个`mixin`的`property`存在变量命名冲突的风险。而`Composition API`刚好解决了这两个问题。
 
-
-
 ## 在Vue3.0优雅的使用v-model
-
 
 在`Vue2.0`中如何实现双向数据绑定一种是`v-model`，另一种是`.sync`。因为一个组件只能用于一个`v-model`，但是有的组件需要有多个可以双向响应的数据，所以就出现了`.sync`。在`Vue3.0`中为了实现统一，实现了让一个组件可以拥有多个`v-model`，同时删除掉了`.sync`。在vue3.0中，`v-model`后面需要跟一个`modelValue`，即要双向绑定的属性名，`Vue3.0`就是通过给不同的`v-model`指定不同的`modelValue`来实现多个`v-model`。
 
-> 参考地址: https://v3.vuejs.org/guide/migration/v-model.html#overview
+> 参考地址: <https://v3.vuejs.org/guide/migration/v-model.html#overview>
 
-## SSR是什么，原理是什么？
+## SSR是什么，原理是什么
 
 在客户端请求服务器的时候，服务器到数据库中获取到相关的数据，并且在服务器内部将`Vue`组件渲染成`HTML`，并且将数据、`HTML`一并返回给客户端，这个在服务器将数据和组件转化为HTML的过程，叫做服务端渲染`SSR`。
 
@@ -44,8 +39,6 @@
 - **有利于`SEO`：**其实就是有利于爬虫来爬你的页面，因为部分页面爬虫是不支持执行`JavaScript`的，这种不支持执行`JavaScript`的爬虫抓取到的非SSR的页面会是一个空的`HTML`页面，而有了`SSR`以后，这些爬虫就可以获取到完整的`HTML`结构的数据，进而收录到搜索引擎中。
 
 - **白屏时间更短：**相对于客户端渲染，服务端渲染在浏览器请求`URL`之后已经得到了一个带有数据的`HTML`文本，浏览器只需要解析`HTML`，直接构建`DOM`树就可以。而客户端渲染，需要先得到一个空的`HTML`页面，这个时候页面已经进入白屏，之后还需要经过加载并执行 `JavaScript`、请求后端服务器获取数据、`JavaScript` 渲染页面几个过程才可以看到最后的页面。特别是在复杂应用中，由于需要加载 `JavaScript` 脚本，越是复杂的应用，需要加载的 `JavaScript` 脚本就越多、越大，这会导致应用的首屏加载时间非常长，进而降低了体验感。
-
-
 
 ## Composition API与React Hook的区别
 
@@ -62,7 +55,5 @@
 响应式系统自动实现了依赖收集，进而组件的部分的性能优化由`Vue`内部自己完成，而`React Hook`需要手动传入依赖，而且必须必须保证依赖的顺序，让`useEffect`、`useMemo`等函数正确的捕获依赖变量，否则会由于依赖不正确使得组件性能下降。
 
 虽然`Compositon API`看起来比`React Hook`好用，但是其设计思想也是借鉴`React Hook`的。
-
-
 
 [^Hook]:  React 靠的是 Hook 调用的顺序,知道哪个 state 对应哪个 useState,只要 Hook 的调用顺序在多次渲染之间保持一致，React 就能正确地将内部 state 和对应的 Hook 进行关联 [Hook rules](https://zh-hans.reactjs.org/docs/hooks-rules.html#explanation)
