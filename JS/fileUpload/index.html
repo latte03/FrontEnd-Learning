@@ -1,0 +1,151 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .dd {
+        width: 350px;
+    }
+
+    .hccwp-upload {
+        position: relative;
+        display: inline-block;
+
+
+    }
+
+    .hccwp-upload__input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        display: none;
+        height: 100%;
+        width: 100%;
+
+
+    }
+
+    .hccwp-upload-button {
+        background-color: blue;
+        color: #fff;
+        display: inline-block;
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all .3s ease;
+    }
+
+    .hccwp-upload-button:active {
+        opacity: .7;
+    }
+
+    .hccwp-upload-tips {
+        opacity: .5;
+        font-size: 13px;
+        padding: 8px 0;
+    }
+
+    .hccwp-upload-list__item {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 3px 6px;
+        border-radius: 4px;
+        margin-bottom: 6px;
+        transition: all .3s ease
+    }
+
+    .hccwp-upload-list__item-name {
+        display: block;
+        flex: 1 0 auto;
+    }
+
+    .hccwp-upload-list__item-icon {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        opacity: 0;
+        transform: scale(0);
+        transition: opacity .3s ease
+    }
+
+    .hccwp-upload-list__item-icon::before,
+    .hccwp-upload-list__item-icon::after {
+        content: '';
+        width: 14px;
+        height: 1px;
+        background-color: #000;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+
+    }
+
+    .hccwp-upload-list__item-icon::before {
+        transform: rotate(45deg);
+    }
+
+    .hccwp-upload-list__item-icon::after {
+        transform: rotate(-45deg);
+    }
+
+    .hccwp-upload-list__item-icon:active {
+        background-color: #ddd;
+    }
+
+    .hccwp-upload-list__item:hover {
+        background-color: #f1f1f1;
+    }
+
+    .hccwp-upload-list__item:hover .hccwp-upload-list__item-icon {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    ul,
+    li {
+        margin: 0;
+        padding: 0
+    }
+</style>
+
+<body>
+    <div class="dd"></div>
+    <script src='./index.js'></script>
+    <script>
+        const file = new fileupload({
+            el: '.dd',
+            class: 'test',
+            accept: '.jpg,.pdf',
+            action: 'https://jsonplaceholder.typicode.com/posts/',
+            files: [{
+                name: 'dd'
+            }, {
+                name: 'dd'
+            }],
+            limit: 5,
+            tips: '只能上传jpg/png文件，且不超过500kb',
+            on: {
+                upload(file, fileList) {
+                    console.log(file, fileList)
+                }
+            }
+        })
+        console.log(file)
+        file.on('upload', function (files) {
+            console.log(files)
+        })
+    </script>
+</body>
+
+</html>
